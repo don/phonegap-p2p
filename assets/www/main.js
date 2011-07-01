@@ -1,24 +1,23 @@
 /*global NdefPlugin, Ndef */
 
-function onNfc(nfcEvent) {
-  console.log(JSON.stringify(nfcEvent.tagData));
-  // ignore what's on the tag for now, just overwrite
-  
+function shareTag() {
   var mimeType = document.forms[0].elements["mimeType"].value,
     payload = document.forms[0].elements["payload"].value,
     record = Ndef.mimeMediaRecord(mimeType, Ndef.stringToBytes(payload));
 
-    window.plugins.NdefPlugin.writeTag(
+    window.plugins.NdefPlugin.p2p(
         [record], 
         function () { 
             navigator.notification.vibrate(100);
         }, function () {
-            alert("Failed to write message to tag.");
+            alert("Failed to share tag.");
         });   
 }
 
 var ready = function () {
   
+  document.getElementById('button').addEventListener("click", shareTag, false); 
+    
   function win() {
     console.log("Listening for NDEF tags");
   }
@@ -27,7 +26,7 @@ var ready = function () {
     alert('Failed to register NFC Listener');
   }
   
-  window.plugins.NdefPlugin.addNdefListener(onNfc, win, fail);          
+  window.plugins.NdefPlugin.addNdefListener(function () { alert("Read NDEF Tag"); }, win, fail);          
 };
 
 // deviceready is being called before the plugins finish initializing

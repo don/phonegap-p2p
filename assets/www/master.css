@@ -5,3 +5,10 @@ h1 {
 p {
 	margin: 10px 15px 0 5px;
 }
+
+button {
+	padding-top: 10px;
+    font-size: 1.25em;
+    height: 50px;
+    width: 150px;
+}
