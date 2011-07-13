@@ -5,7 +5,7 @@ function shareTag() {
     payload = document.forms[0].elements["payload"].value,
     record = Ndef.mimeMediaRecord(mimeType, Ndef.stringToBytes(payload));
 
-    window.plugins.NdefPlugin.p2p(
+    navigator.nfc.p2p(
         [record], 
         function () { 
             navigator.notification.vibrate(100);
@@ -26,7 +26,7 @@ var ready = function () {
     alert('Failed to register NFC Listener');
   }
   
-  window.plugins.NdefPlugin.addNdefListener(function () { alert("Read NDEF Tag"); }, win, fail);          
+  navigator.nfc.NdefPlugin.addNdefListener(function () { alert("Read NDEF Tag"); }, win, fail);          
 };
 
 // deviceready is being called before the plugins finish initializing
