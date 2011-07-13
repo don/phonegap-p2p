@@ -5,7 +5,7 @@ Simple web app that shares a NDEF Message containing one Mime Media Record as a 
 Requires 
 
 * Google Nexus S phone
-* PhoneGap 0.9.6+
+* PhoneGap 1.0
 * phonegap-nfc plugin
 
 See [phonegap-nfc](https://github.com/chariotsolutions/phonegap-nfc) for more info.
