@@ -1,4 +1,4 @@
-/*global NdefPlugin, Ndef */
+/*global Ndef */
 
 function shareTag() {
   var mimeType = document.forms[0].elements["mimeType"].value,
@@ -15,20 +15,7 @@ function shareTag() {
 }
 
 var ready = function () {
-  
-  document.getElementById('button').addEventListener("click", shareTag, false); 
-    
-  function win() {
-    console.log("Listening for NDEF tags");
-  }
-  
-  function fail() {
-    alert('Failed to register NFC Listener');
-  }
-  
-  navigator.nfc.NdefPlugin.addNdefListener(function () { alert("Read NDEF Tag"); }, win, fail);          
+  document.getElementById('button').addEventListener("click", shareTag, false);
 };
 
-// deviceready is being called before the plugins finish initializing
-// add setTimeout as a kludge until the real problem is fixed
-document.addEventListener('deviceready', function () { window.setTimeout(ready, 500); }, false);
+document.addEventListener('deviceready', ready, false);
