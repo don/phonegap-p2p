@@ -1,2 +1,6 @@
 bin/
 gen/
+.idea/
+*.iml
+pg.sh
+update.sh

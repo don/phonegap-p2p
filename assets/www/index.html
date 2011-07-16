@@ -3,9 +3,9 @@
   <head>
     <meta name="viewport" content="width=320; user-scalable=no" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Rock Paper Scissors</title>
+    <title>PhoneGap Peer to Peer Demo</title>
 	  <link rel="stylesheet" href="master.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	  <script type="text/javascript" charset="utf-8" src="phonegap-1.0.0rc1.js"></script>
+	  <script type="text/javascript" charset="utf-8" src="phonegap-1.0.0rc1-SNAPSHOT.js"></script>
 	  <script type="text/javascript" charset="utf-8" src="phonegap-nfc.js"></script>	  
 	  <script type="text/javascript" charset="utf-8" src="main.js"></script>
   </head>
@@ -13,10 +13,20 @@
     <h1>PhoneGap NFC P2P</h1>
     <form>
       Mime Type:<br/>
-      <input type="text" name="mimeType" value="game/rockpaperscissors" size="30" /><br/>
+      <input type="text" name="mimeType" value="text/x-vCard" size="30" /><br/>
       Payload:<br/>      
-      <textarea name="payload" rows="10" cols="30">Rock</textarea>
+      <textarea name="payload" rows="10" cols="30">BEGIN:VCARD
+VERSION:2.1
+N:Coleman;Don;;;
+FN:Don Coleman
+ORG:Chariot Solutions;
+URL:http://chariotsolutions.com
+TEL;WORK:215-358-1780
+EMAIL;WORK:dcoleman@chariotsolutions.com
+END:VCARD
+</textarea>
+        <br/>
+        <input type="checkbox" name="share" id="checkbox" value="Share"/><label for="checkbox">Share Tag</label>
     </form>
-    <button id="button">Share</button>
   </body>
 </html>

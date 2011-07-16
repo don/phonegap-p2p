@@ -6,9 +6,14 @@ p {
 	margin: 10px 15px 0 5px;
 }
 
-button {
-    margin-top: 10px;
-    font-size: 1.25em;
-    height: 50px;
-    width: 150px;
+textarea {
+    margin-bottom: 20px;
+}
+
+input:last-of-type {
+    margin-left: 10px;
+}
+
+label {
+	font-size: 1.25em;
 }
