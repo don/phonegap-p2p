@@ -1,7 +1,7 @@
 /*global Ndef */
 
 function unshareTag() {
-    navigator.nfc.unshareTag(
+    nfc.unshare(
         function () {
             navigator.notification.vibrate(100);
             setTimeout(function() {
@@ -15,9 +15,9 @@ function unshareTag() {
 function shareTag() {
     var mimeType = document.forms[0].elements["mimeType"].value,
         payload = document.forms[0].elements["payload"].value,
-        record = Ndef.mimeMediaRecord(mimeType, Ndef.stringToBytes(payload));
+        record = ndef.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
 
-    navigator.nfc.shareTag(
+    nfc.share(
         [record],
         function () {
             navigator.notification.vibrate(100);
