@@ -9,11 +9,7 @@ function unshareTag() {
     nfc.unshare(
         function () {
             navigator.notification.vibrate(100);
-            setTimeout(function() {
-                navigator.notification.vibrate(100);
-                toast.showShort("Tag is no longer shared");
-
-            }, 200);
+            toast.showShort("Tag is no longer shared");
         }, function (reason) {
             alert("Failed to unshare tag " + reason);
         });
