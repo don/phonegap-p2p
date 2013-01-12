@@ -17,3 +17,14 @@ input:last-of-type {
 label {
 	font-size: 1.25em;
 }
+
+form {
+  margin-bottom: 40px;
+}
+
+:disabled {
+    opacity: 0.8;
+/*    color: #6b849a;
+    text-shadow: 1px 1px #ffffff;
+*/    cursor: default;
+}

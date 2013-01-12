@@ -4,3 +4,7 @@ gen/
 *.iml
 pg.sh
 update.sh
+local.properties
+bin
+gen
+out
