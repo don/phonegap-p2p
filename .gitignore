@@ -7,3 +7,4 @@ update.sh
 local.properties
 bin
 gen
+out
