@@ -17,3 +17,7 @@ input:last-of-type {
 label {
 	font-size: 1.25em;
 }
+
+form {
+  margin-bottom: 40px;
+}

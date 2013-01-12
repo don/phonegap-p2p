@@ -1,4 +1,4 @@
-/*global Ndef */
+/*global nfc */
 
 function unshareTag() {
     nfc.unshare(
@@ -7,8 +7,8 @@ function unshareTag() {
             setTimeout(function() {
                 navigator.notification.vibrate(100);
             }, 200);
-        }, function () {
-            alert("Failed to unshare tag.");
+        }, function (reason) {
+            alert("Failed to unshare tag " + reason);
         });
 }
 
@@ -21,8 +21,9 @@ function shareTag() {
         [record],
         function () {
             navigator.notification.vibrate(100);
-        }, function () {
-            alert("Failed to share tag.");
+        }, function (reason) {
+            alert("Failed to share tag " + reason);
+            // when NDEF_PUSH_DISABLED, open setting and enable Android Beam
         });
 }
 
@@ -36,12 +37,19 @@ function onChange(e) {
 
 var ready = function () {
     document.getElementById('checkbox').addEventListener("change", onChange, false);
-    document.addEventListener("menubutton", showSampleData, false);
 };
 
 document.addEventListener('deviceready', ready, false);
 
 var data = [
+    {
+        mimeType: 'text/pg',
+        payload: 'Hello PhoneGap'
+    },
+    {
+        mimeType: 'game/rockpaperscissors',
+        payload: 'Rock'
+    },
     {
         mimeType: 'text/x-vCard',
         payload: 'BEGIN:VCARD\n' +
@@ -53,26 +61,6 @@ var data = [
             'TEL;WORK:215-358-1780\n' +
             'EMAIL;WORK:dcoleman@chariotsolutions.com\n' +
             'END:VCARD'
-    },
-    {
-        mimeType: 'text/x-vCard',
-        payload: 'BEGIN:VCARD\n' +
-            'VERSION:2.1\n' +
-            'N:Griffin;Kevin;;;\n' +
-            'FN:Kevin Griffin\n' +
-            'ORG:Chariot Solutions;\n' +
-            'URL:http://chariotsolutions.com\n' +
-            'TEL;WORK:215-358-1780\n' +
-            'EMAIL;WORK:kgriffin@chariotsolutions.com\n' +
-            'END:VCARD'
-    },
-    {
-        mimeType: 'game/rockpaperscissors',
-        payload: 'Rock'
-    },
-    {
-        mimeType: 'text/pg',
-        payload: 'Hello PhoneGap'
     },
     {
         mimeType: '',
@@ -94,5 +82,3 @@ function showSampleData() {
     mimeTypeField.value = record.mimeType;
     payloadField.value = record.payload;    
 }
-
-//document.addEventListener("menubutton", showSampleData, false);
