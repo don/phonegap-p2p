@@ -13,8 +13,8 @@ function unshareTag() {
 }
 
 function shareTag() {
-    var mimeType = document.forms[0].elements["mimeType"].value,
-        payload = document.forms[0].elements["payload"].value,
+    var mimeType = document.forms[0].elements.mimeType.value,
+        payload = document.forms[0].elements.payload.value,
         record = ndef.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
 
     nfc.share(
@@ -36,6 +36,7 @@ function onChange(e) {
 
 var ready = function () {
     document.getElementById('checkbox').addEventListener("change", onChange, false);
+    document.addEventListener("menubutton", showSampleData, false);
 };
 
 document.addEventListener('deviceready', ready, false);
@@ -81,8 +82,8 @@ var data = [
 
 var index = 0;
 function showSampleData() {
-    var mimeTypeField = document.forms[0].elements["mimeType"],
-      payloadField = document.forms[0].elements["payload"],
+    var mimeTypeField = document.forms[0].elements.mimeType,
+      payloadField = document.forms[0].elements.payload,
       record = data[index];
     
     index++;
@@ -94,4 +95,4 @@ function showSampleData() {
     payloadField.value = record.payload;    
 }
 
-document.addEventListener("menubutton", showSampleData, false);
+//document.addEventListener("menubutton", showSampleData, false);
