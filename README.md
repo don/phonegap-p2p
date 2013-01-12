@@ -1,11 +1,12 @@
 # PhoneGap NFC Peer to Peer Demo
 
-Simple web app that shares a NDEF Message containing one Mime Media Record as a NFC Peer to Peer tag. 
+Simple app that shares an NDEF Message containing one Mime Media Record as a NFC Peer to Peer tag. 
 
 Requires 
 
-* Google Nexus S phone
-* PhoneGap 1.0
-* phonegap-nfc plugin
+* Android Phone with NFC
+* Android ICS 4.0 or greater
+* PhoneGap 2.3.0 (included in project)
+* phonegap-nfc plugin (included in project)
 
 See [phonegap-nfc](https://github.com/chariotsolutions/phonegap-nfc) for more info.
