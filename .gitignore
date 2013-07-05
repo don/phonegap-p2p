@@ -8,3 +8,8 @@ local.properties
 bin
 gen
 out
+
+platforms/android/bin
+platforms/android/gen
+platforms/android/assets/www
+
