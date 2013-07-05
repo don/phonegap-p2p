@@ -1,49 +1,105 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+/*global nfc */
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+function unshareTag() {
 
-        console.log('Received Event: ' + id);
+    enableUI();
+
+    nfc.unshare(
+        function () {
+            navigator.notification.vibrate(100);
+            toast.showShort("Tag is no longer shared");
+        }, function (reason) {
+            alert("Failed to unshare tag " + reason);
+        });
+}
+
+function shareTag() {
+    var mimeType = document.forms[0].elements.mimeType.value,
+        payload = document.forms[0].elements.payload.value,
+        record = ndef.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
+
+    disableUI();
+
+    nfc.share(
+        [record],
+        function () {
+            navigator.notification.vibrate(100);
+            toast.showShort("Sharing Tag");
+        }, function (reason) {
+            alert("Failed to share tag " + reason);
+            // when NDEF_PUSH_DISABLED, open setting and enable Android Beam
+        });
+}
+
+function disableUI() {
+    document.forms[0].elements.mimeType.disabled = true;    
+    document.forms[0].elements.payload.disabled = true;    
+}
+
+function enableUI() {
+    document.forms[0].elements.mimeType.disabled = false;    
+    document.forms[0].elements.payload.disabled = false;    
+}
+
+function onChange(e) {
+    if (e.target.checked) {
+        shareTag();
+    } else {
+        unshareTag();
     }
+}
+
+var ready = function () {
+    document.getElementById('checkbox').addEventListener("change", onChange, false);
+    document.getElementById('sample').addEventListener("click", showSampleData, false);
 };
+
+document.addEventListener('deviceready', ready, false);
+
+var data = [
+    {
+        mimeType: 'text/pg',
+        payload: 'Hello PhoneGap'
+    },
+    {
+        mimeType: 'game/rockpaperscissors',
+        payload: 'Rock'
+    },
+    {
+        mimeType: 'text/x-vCard',
+        payload: 'BEGIN:VCARD\n' +
+            'VERSION:2.1\n' +
+            'N:Coleman;Don;;;\n' +
+            'FN:Don Coleman\n' +
+            'ORG:Chariot Solutions;\n' +
+            'URL:http://chariotsolutions.com\n' +
+            'TEL;WORK:215-358-1780\n' +
+            'EMAIL;WORK:dcoleman@chariotsolutions.com\n' +
+            'END:VCARD'
+    },
+    {
+        mimeType: '',
+        payload: ''
+    }
+];
+
+var index = 0;
+function showSampleData() {
+    var mimeTypeField = document.forms[0].elements.mimeType,
+      payloadField = document.forms[0].elements.payload,
+      record = data[index];
+
+    if (mimeTypeField.disabled) {
+        toast.showLong("Unshare Tag to edit data");
+        return false;
+    }
+    
+    index++;
+    if (index >= data.length) {
+        index = 0;
+    }
+    
+    mimeTypeField.value = record.mimeType;
+    payloadField.value = record.payload;
+    return false;    
+}
