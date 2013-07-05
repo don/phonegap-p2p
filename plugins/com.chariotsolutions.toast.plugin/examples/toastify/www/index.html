@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>PhoneGap</title>
+      <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" title="no title">
+	  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	  <script type="text/javascript">
+          var ready = function () {
+
+              toast.showLong('Hello PhoneGap');
+          };
+
+          document.addEventListener('deviceready', ready, false);
+      </script>
+  </head>
+  <body>
+    <button onclick="toast.showLong('this is a toast message');">toast</button>
+    <button onclick="toast.cancel();">cancel</button>
+  </body>
+</html>
