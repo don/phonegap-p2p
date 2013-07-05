@@ -75,4 +75,7 @@
     <feature name="Toasty">
         <param name="android-package" value="com.chariotsolutions.toast.plugin.ToastPlugin" />
     </feature>
+    <feature name="NfcPlugin">
+        <param name="android-package" value="com.chariotsolutions.nfc.plugin.NfcPlugin" />
+    </feature>
 </widget>
