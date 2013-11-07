@@ -1,9 +1,10 @@
 /*jshint quotmark: false */
-/*global nfc, ndef, toast, alert, cordova, checkbox */
+/*global nfc, ndef, toast, alert, cordova, checkbox, statusDiv */
 
 "use strict";
 
-var isBlackBerry = (cordova.platformId === 'blackberry10');
+var android = (cordova.platformId === 'android');
+var bb10 = (cordova.platformId === 'blackberry10');
 
 function disableUI() {
     document.forms[0].elements.mimeType.disabled = true;
@@ -15,6 +16,17 @@ function enableUI() {
     document.forms[0].elements.payload.disabled = false;
 }
 
+function notifyUser(message) {
+    if (android) {
+        toast.showShort(message);
+    } else {
+        statusDiv.innerHTML = message;
+        setTimeout(function() {
+            statusDiv.innerHTML = "";
+        }, 3000);
+    }
+}
+
 function unshareMessage() {
 
     enableUI();
@@ -22,7 +34,7 @@ function unshareMessage() {
     nfc.unshare(
         function () {
             navigator.notification.vibrate(100);
-            toast.showShort("Message is no longer shared.");
+            notifyUser("Message is no longer shared.");
         }, function (reason) {
             alert("Failed to unshare message " + reason);
         });
@@ -33,25 +45,23 @@ function shareMessage() {
         payload = document.forms[0].elements.payload.value,
         record = ndef.mimeMediaRecord(mimeType, nfc.stringToBytes(payload));
 
-    if (!isBlackBerry) {
-        // BlackBerry's card hides the UI
-        // only disable for Android
-        disableUI();
-    }
-    
+    disableUI();
+
     nfc.share(
         [record],
         function () {
-            if (isBlackBerry) {
+            if (bb10) {
                 // BUG: blackberry calls this as soon as the Card appears
                 checkbox.checked = false;
+                enableUI();
             } else {
                 navigator.notification.vibrate(100);
-                toast.showLong("Sent Message to Peer");
+                notifyUser("Sent Message to Peer");
             }
         }, function (reason) {
             alert("Failed to share tag " + reason);
-            // when NDEF_PUSH_DISABLED, open setting and enable Android Beam
+            checkbox.checked = false;
+            enableUI();
         });
 }
 
@@ -103,12 +113,8 @@ function showSampleData() {
       payloadField = document.forms[0].elements.payload,
       record = data[index];
 
-    if (mimeTypeField.disabled) {        
-        if (toast) {
-            toast.showLong("Unshare Tag to edit data");
-        } else {
-            alert("Unshare Tag to edit data");
-        }
+    if (mimeTypeField.disabled) {
+        notifyUser("Unshare Message to edit data");
         return false;
     }
 
