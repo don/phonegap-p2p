@@ -2,13 +2,12 @@ package com.chariotsolutions.toast.plugin;
 
 import android.util.Log;
 import android.widget.Toast;
-import org.apache.cordova.api.Plugin;
-import org.apache.cordova.api.PluginResult;
-import org.apache.cordova.api.PluginResult.Status;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class ToastPlugin extends Plugin {
+public class ToastPlugin extends CordovaPlugin {
 
     private static final String TAG = "ToastPlugin";
     private static final String LONG_TOAST_ACTION = "show_long";
@@ -18,7 +17,7 @@ public class ToastPlugin extends Plugin {
     private Toast toast = null;
 
     @Override
-    public PluginResult execute(String action, JSONArray args, String callbackId) {
+    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
         Log.d(TAG, action);
 
         if (action.equals(CANCEL_ACTION)) {
@@ -27,13 +26,7 @@ public class ToastPlugin extends Plugin {
 
         } else {
 
-            String message;
-            try {
-                message = args.getString(TOAST_MESSAGE_INDEX);
-            } catch (JSONException e) {
-                Log.e(TAG, "Required parameter 'Toast Message' missing");
-                return new PluginResult(Status.JSON_EXCEPTION);
-            }
+            String message = data.getString(TOAST_MESSAGE_INDEX);
 
             if (action.equals(LONG_TOAST_ACTION)) {
                 showToast(message, Toast.LENGTH_LONG);
@@ -42,7 +35,8 @@ public class ToastPlugin extends Plugin {
             }
         }
 
-        return new PluginResult(Status.OK);
+        callbackContext.success();
+        return true;
     }
 
     private void cancelToast() {

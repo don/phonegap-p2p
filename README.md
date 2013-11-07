@@ -2,7 +2,6 @@
 
 Simple app that shares an NDEF Message containing one Mime Media Record as a NFC Peer to Peer tag. 
 
-
 Requires 
 
 * [Cordova CLI](https://npmjs.org/package/cordova)

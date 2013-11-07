@@ -1,1 +1,0 @@
-{"prepare_queue":{"installed":[],"uninstalled":[]},"config_munge":{"res/xml/config.xml":{"/widget":{"<feature name=\"Toasty\"><param name=\"android-package\" value=\"com.chariotsolutions.toast.plugin.ToastPlugin\" /></feature>":1}}},"installed_plugins":{"com.chariotsolutions.toast.plugin":{"PACKAGE_NAME":"com.chariotsolutions.toastify"}},"dependent_plugins":{}}

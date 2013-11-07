@@ -1,6 +1,26 @@
-This example is built with [cordova-cli](https://npmjs.org/package/cordova).
+Toastify - Example application for Toast plugin
 
-Build, install and run example from this directory.
+Copy the example to a new directory.  
+
+    $ cp -R ~/Toasty/examples/toastify ~/toastify
     
+You need to copy the project to a new directory, otherwise the plugin installer will fail.
+
+This code requires [cordova-cli](https://github.com/apache/cordova-cli), which require [node.js](http://nodejs.org)
+    
+    $ npm install cordova -g
+    
+Adding platforms generates the native projects
+
+    $ cordova platform add android
+    
+Install the Toast plugin with cordova
+
+    $ cordova plugin add ~/Toasty
+    
+Build and deploy to an Android device. 
+
     $ cordova run
+    
+
     
