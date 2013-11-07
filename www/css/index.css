@@ -28,3 +28,10 @@ form {
     text-shadow: 1px 1px #ffffff;
 */    cursor: default;
 }
+
+#statusDiv {
+  text-align: center;
+  margin: 10px 15px 0 5px;
+}
+
+
