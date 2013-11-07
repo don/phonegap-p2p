@@ -1,12 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.chariotsolutions.nfc.demo.p2p" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <access origin="*" />
-    <feature name="NfcPlugin">
-        <param name="wp-package" value="NfcPlugin" />
-    </feature>
-    <feature name="Vibration">
-        <param name="wp-package" value="Vibration" />
-    </feature>
     <name>P2PDemo</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -14,6 +7,7 @@
     <author email="dev@callback.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
+    <access origin="*" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
 </widget>
