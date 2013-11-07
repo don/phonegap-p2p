@@ -1,0 +1,6 @@
+C:\Users\don\phonegap-p2p\platforms\wp8\cordova\lib\CordovaDeploy\CordovaDeploy\bin\Debug\CordovaDeploy.exe.config
+C:\Users\don\phonegap-p2p\platforms\wp8\cordova\lib\CordovaDeploy\CordovaDeploy\bin\Debug\CordovaDeploy.exe
+C:\Users\don\phonegap-p2p\platforms\wp8\cordova\lib\CordovaDeploy\CordovaDeploy\bin\Debug\CordovaDeploy.pdb
+C:\Users\don\phonegap-p2p\platforms\wp8\cordova\lib\CordovaDeploy\CordovaDeploy\obj\x86\Debug\CordovaDeploy.csprojResolveAssemblyReference.cache
+C:\Users\don\phonegap-p2p\platforms\wp8\cordova\lib\CordovaDeploy\CordovaDeploy\obj\x86\Debug\CordovaDeploy.exe
+C:\Users\don\phonegap-p2p\platforms\wp8\cordova\lib\CordovaDeploy\CordovaDeploy\obj\x86\Debug\CordovaDeploy.pdb
