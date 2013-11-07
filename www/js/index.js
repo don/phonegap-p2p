@@ -4,6 +4,7 @@
 "use strict";
 
 var android = (cordova.platformId === 'android');
+var windowsphone = (cordova.platformId === 'windowsphone');
 var bb10 = (cordova.platformId === 'blackberry10');
 
 function disableUI() {
@@ -51,10 +52,14 @@ function shareMessage() {
         [record],
         function () {
             if (bb10) {
-                // BUG: blackberry calls this as soon as the Card appears
+                // Blackberry calls success as soon as the Card appears
                 checkbox.checked = false;
                 enableUI();
+            } else if (windowsphone) {
+                // Windows phone calls success immediately. Bug?
+                notifyUser("Sharing Message");
             } else {
+                // Android call the success callback when the message is sent to peer
                 navigator.notification.vibrate(100);
                 notifyUser("Sent Message to Peer");
             }
