@@ -13,3 +13,5 @@ platforms/android/bin
 platforms/android/gen
 platforms/android/assets/www
 
+platforms/blackberry10/build
+platforms/blackberry10/www
