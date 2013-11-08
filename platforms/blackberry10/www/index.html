@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>PhoneGap Peer to Peer Demo</title>
+      <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <h1>PhoneGap NFC P2P</h1>
+    <form>
+      Mime Type:<br/>
+      <input type="text" name="mimeType" value="text/pg" size="30" /><br/>
+      Payload:<br/>      
+      <textarea name="payload" rows="10" cols="30">hello, world</textarea>
+        <br/>
+        <input type="checkbox" name="share" id="checkbox" value="Share"/><label for="checkbox">Share Message</label>        
+    </form>
+    <p>
+        <a href="#" id="sample">Sample Data</a>
+    </p>
+    <div id="statusDiv"></div>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+  </body>
+</html>

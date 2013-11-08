@@ -1,0 +1,37 @@
+h1 {
+	font-size: 1.5em
+}
+
+p {
+	margin: 10px 15px 0 5px;
+}
+
+textarea {
+    margin-bottom: 20px;
+}
+
+input:last-of-type {
+    margin-left: 10px;
+}
+
+label {
+	font-size: 1.25em;
+}
+
+form {
+  margin-bottom: 40px;
+}
+
+:disabled {
+    opacity: 0.8;
+/*    color: #6b849a;
+    text-shadow: 1px 1px #ffffff;
+*/    cursor: default;
+}
+
+#statusDiv {
+  text-align: center;
+  margin: 10px 15px 0 5px;
+}
+
+
