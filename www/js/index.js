@@ -17,7 +17,7 @@ var app = {
         document.addEventListener('deviceready', app.deviceready, false);
     },
     deviceready: function () {
-        checkbox.addEventListener('change', app.toggleCheckbox, false);
+        document.getElementById('checkbox').addEventListener('change', app.toggleCheckbox, false);
         sample.addEventListener('click', app.showSampleData, false);
     },
     disableUI: function () {

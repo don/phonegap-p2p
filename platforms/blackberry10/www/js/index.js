@@ -11,16 +11,13 @@ var android = (cordova.platformId === 'android'),
 var app = {
     sampleDataIndex: 0,
     initialize: function () {
-        console.log("initialize");        
         this.bind();
     },
     bind: function () {
-        console.log("bind");
         document.addEventListener('deviceready', app.deviceready, false);
     },
     deviceready: function () {
-        console.log("deviceready");        
-        checkbox.addEventListener('change', app.toggleCheckbox, false);
+        document.getElementById('checkbox').addEventListener('change', app.toggleCheckbox, false);
         sample.addEventListener('click', app.showSampleData, false);
     },
     disableUI: function () {
