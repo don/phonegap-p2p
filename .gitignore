@@ -30,4 +30,4 @@ platforms/wp8/*.suo
 #platforms/wp8/www/
 
 platforms/blackberry10/build
-platforms/blackberry10/www
+#platforms/blackberry10/www
