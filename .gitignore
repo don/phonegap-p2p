@@ -31,3 +31,5 @@ platforms/wp8/*.suo
 
 platforms/blackberry10/build
 #platforms/blackberry10/www
+plugins/cordova-plugin-vibration
+plugins/phonegap-nfc
